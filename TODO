@@ -1,0 +1,10 @@
+Objective: Animate Otero Assassins
+
+TODO:
+[] Print general information
+[] Prompt user for whether they want instructions about Assassins
+[] Load data from game
+[] Create graph representing players (***Note: How to print directed graph?)
+[] Use matplotlib to animate the game
+  [] Delete a node for each player out
+  [] Redraw the graph
