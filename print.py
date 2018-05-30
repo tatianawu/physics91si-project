@@ -5,6 +5,8 @@ Prints general information about the program.
 
 """
 
+import string
+
 
 """
 Function: welcome
@@ -28,12 +30,13 @@ Prompts the user for whether or not to print the general rules for Assassins.
 """
 def instruction():
     instruction = input("Before we start, would you like a quick overview of the game? Y/N ")
-    while (instruction != "Y" and instruction != "N"):
+    instruction = instruction.lower()
+    while (instruction != "y" and instruction != "n"):
         print("Sorry, please enter either 'Y' or 'N':")
         instruction = input("Would you like a quick overview of the game? Y/N ")
-    if instruction == "N":
+    if instruction == "n":
         print("\nGreat! Let's get started!\n")
-    elif instruction == "Y":
+    elif instruction == "y":
         print("\nGreat! Here's how Assassins works:\n")
         assassins()
 
@@ -48,4 +51,14 @@ def assassins():
     print("Assassins is a live-action game in which players try to eliminate one another using mock weapons.")
     print("Each player has a specific target, and their role is to track and eliminate that target.")
     print("Once the player has eliminated their target, they proceed to track their victim's target.")
-    print("The game is over when there is only one player remaining.")
+    print("The game is over when there is only one player remaining.\n")
+
+
+"""
+Function: start
+================
+Delays the program until the user is ready to start.
+
+"""
+def start():
+    start = input("Ready to start? Press enter. ")
