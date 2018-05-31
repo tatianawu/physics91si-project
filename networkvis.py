@@ -1,7 +1,9 @@
 """
-
-    *** Previous version ***
-*** See vis.py for current version ***
+============================================================
+                        DO NOT RUN
+                *** Previous version ***
+        *** See vis.py for current version ***
+============================================================
 
 """
 
