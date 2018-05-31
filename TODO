@@ -9,3 +9,7 @@ TODO:
   [x] Delete a node for each player out
   [x] Redraw the graph
   [x] Highlight killer/killee (dict of attributes)
+
+For future:
+[] Look at graph-tools
+[] Actually animate network rather than just redrawing (show FDLA in progress)
