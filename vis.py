@@ -16,7 +16,7 @@ pylab.ion
 """
 Function: init_network
 =======================
-Draws the initial network of players.
+Takes a Graph and initializes the network of players.
 
 """
 def init_network(G, nplayers):
@@ -26,13 +26,15 @@ def init_network(G, nplayers):
     for i in range(nplayers):
         G.add_edge(data.players[i], data.players[(i+1)%nplayers])
 
-    nx.draw(G, pos=nx.kamada_kawai_layout(G), node_color=data.colors, arrows=True, with_labels=True)
+    nx.draw(G, pos=nx.kamada_kawai_layout(G), node_color=data.colors,
+      arrows=True, with_labels=True)
 
 
 """
 Function: find_target_idx
 ==========================
-Takes the node representing the current target and returns its index in the nodelist.
+Takes the node representing the current target and returns its index in the
+nodelist.
 
 """
 def find_target_idx(G, target):
@@ -43,7 +45,8 @@ def find_target_idx(G, target):
 """
 Function: find_assassin
 ========================
-Takes the node representing the current target and returns the node preceding it -- the assassin.
+Takes the node representing the current target and returns the node preceding
+it -- the assassin.
 
 """
 def find_assassin(G, target):
@@ -55,7 +58,8 @@ def find_assassin(G, target):
 """
 Function: find_new_target
 ==========================
-Takes the node representing the current target and returns the node to which it points -- the new target of the assassin.
+Takes the node representing the current target and returns the node to which it
+points -- the new target of the assassin.
 
 """
 def find_new_target(G, target):
@@ -66,21 +70,22 @@ def find_new_target(G, target):
 """
 Function: show_target
 ======================
-Takes the index of the target in the nodelist. Changes the color of the target to red and the color of the assassin to green
-and draws the network.
+Takes the index of the target in the nodelist. Changes the color of the target
+to red and the color of the assassin to green and draws the network.
 
 """
 def show_target(G, target_idx):
     data.colors[target_idx] = '#ff0000' # indicate target by red
     data.colors[(target_idx-1)%len(G)] = '#00ff7f' # indicate assassin by green
-    nx.draw(G, pos=nx.kamada_kawai_layout(G), node_color=data.colors, arrows=True, with_labels=True, font_size=8)
+    nx.draw(G, pos=nx.kamada_kawai_layout(G), node_color=data.colors,
+      arrows=True, with_labels=True, font_size=8)
 
 
 """
 Function: kill_target
 ======================
-Takes the node and index of the current target. Removes the target from the game and assigns the assassin their new target.
-Redraws the network without the target.
+Takes the node and index of the current target. Removes the target from the game
+and assigns the assassin a new target. Redraws the network without the target.
 
 """
 def kill_target(G, target, target_idx):
@@ -91,7 +96,8 @@ def kill_target(G, target, target_idx):
     G.remove_node(target)
     G.add_edge(assassin, new_target)
     del data.colors[target_idx]
-    nx.draw(G, pos=nx.kamada_kawai_layout(G), node_color=data.colors, arrows=True, with_labels=True, font_size=8)
+    nx.draw(G, pos=nx.kamada_kawai_layout(G), node_color=data.colors,
+      arrows=True, with_labels=True, font_size=8)
 
 
 """
@@ -102,7 +108,8 @@ Resets the color of the previous assassin and draws the network again.
 """
 def update_network(G, assassin_idx):
     data.colors[assassin_idx] = '#b2b2ff'
-    nx.draw(G, pos=nx.kamada_kawai_layout(G), node_color=data.colors, arrows=True, with_labels=True, font_size=8)
+    nx.draw(G, pos=nx.kamada_kawai_layout(G), node_color=data.colors,
+      arrows=True, with_labels=True, font_size=8)
 
 
 """
@@ -112,7 +119,8 @@ Draws the outcome of the game -- shows just the winner.
 
 """
 def final_network(G):
-    nx.draw(G, pos=nx.kamada_kawai_layout(G), node_color='#ffa500', arrows=True, with_labels=True, font_size=8)
+    nx.draw(G, pos=nx.kamada_kawai_layout(G), node_color='#ffa500', arrows=True,
+      with_labels=True, font_size=8)
 
 
 """
@@ -125,6 +133,7 @@ def draw_network(G, nplayers, nelim):
     pylab.show()
     init_network(G, nplayers)
     pylab.draw()
+
     for i in range(len(data.eliminated)):
         target = data.eliminated[nelim]
         target_idx = find_target_idx(G, target)
@@ -140,6 +149,7 @@ def draw_network(G, nplayers, nelim):
         update_network(G, (target_idx-1)%len(G))
         pylab.draw()
         pylab.cla()
+
         nelim += 1
 
     final_network(G)
@@ -156,9 +166,9 @@ Runs the program.
 if __name__ == '__main__':
     print.welcome()
     print.start()
-    # Number of people playing Assassins
+
     nplayers = len(data.players)
-    # Number of players eliminated thus far
-    nelim = 0
+    nelim = 0 # tracks number of players eliminated
+
     G = nx.DiGraph()
     draw_network(G, nplayers, nelim)
