@@ -163,7 +163,7 @@ Function: __main__
 Runs the program.
 
 """
-if __name__ == '__main__':
+def main():
     print.welcome()
     print.start()
 
@@ -172,3 +172,7 @@ if __name__ == '__main__':
 
     G = nx.DiGraph()
     draw_network(G, nplayers, nelim)
+
+
+if __name__ == '__main__':
+    main()
