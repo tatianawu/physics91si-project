@@ -10,7 +10,6 @@ import data
 import networkx as nx
 import matplotlib.pyplot as plt
 import pylab
-pylab.ion
 
 
 """
@@ -130,6 +129,7 @@ Repeatedly draws the network -- in a pseudo-animation -- of Assassins.
 
 """
 def draw_network(G, nplayers, nelim):
+    pylab.ion
     pylab.show()
     init_network(G, nplayers)
     pylab.draw()
@@ -154,7 +154,8 @@ def draw_network(G, nplayers, nelim):
 
     final_network(G)
     pylab.draw()
-    plt.pause(30)
+    plt.pause(5)
+    pylab.ioff
 
 
 """
